@@ -13,6 +13,7 @@
 #' \dontrun{mqic('example.csv')}
 
 library(ggplot2)
+library(corrplot)
 
 mqic <- function() 
 {
