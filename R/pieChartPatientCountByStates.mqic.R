@@ -36,17 +36,6 @@ pieChartPatientCountByStates.default <- function(clsObject, disease)
 #' @rdname pieChartPatientCountByStates mqic
 pieChartPatientCountByStates.mqic <- function(clsObject, disease = NULL)
 {
-    if ( ! is.null(disease)) {
-        if ( ! disease %in% c("diabetes", "hypertension")) {
-            stop("Valid disease is 'diabetes' or 'hypertension' only.")
-        }
-        if (disease == 'diabetes') {
-            disease <- 1;
-        } else {
-          disease <- 2;
-        }
-    }
-    
     data = patientCountByStates(
         clsObject, 
         list("disease" = disease, "colNames" = c("State", "Count"))
@@ -74,4 +63,3 @@ pieChartPatientCountByStates.mqic <- function(clsObject, disease = NULL)
     
     print(p)    
 }
-
