@@ -1,0 +1,17 @@
+Package: mqic
+Title: Analyzes MQIC patient data
+Version: 0.0.1
+Authors@R: "Fazle Rabbi <frabbi@indiana.edu> [aut, cre]"
+Maintainer: Fazle Rabbi <frabbi@indiana.edu>
+Description: The mqic package analyzes some anonymized patient data
+    to look for links between various descriptors and outcomes.
+    The package analyzes a random sample of the approximately 6 million
+    patient records from the Medical Quality Improvement Consortium (MQIC)
+    database. Including over 2000 records, the data spans a range of
+    physical indicators.
+Depends:
+    R (>= 3.1.1),
+    ggplot2,
+    corrplot
+License: MIT
+LazyData: true
