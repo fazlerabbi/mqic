@@ -37,7 +37,14 @@ scatterPlotCorrelate.mqic <- function(clsObject, colx, coly)
 {
     data <- subset(clsObject$data, select=c(colx, coly))
     colnames(data) <- c("col1", "col2")
-  
+    
+    correlation <- cor(data$col1, data$col2)
+    # round correlation to 2 decimal places
+    correlation <- format(round(correlation, 2), nsmall = 2)
+    
+    # Show correlation measure in the title
+    plot_title <- paste("Linear regression. Correlation(r)=", correlation, sep = "")
+    
     p <- ggplot(data, aes(x=col1, y=col2)) + 
         geom_point() + 
             geom_smooth(
@@ -45,16 +52,11 @@ scatterPlotCorrelate.mqic <- function(clsObject, colx, coly)
             se=FALSE,    # Don't add shaded confidence region
             fullrange=T
         ) +
+        ggtitle(plot_title) + 
+        theme(plot.title = element_text(lineheight=.8, face="bold")) +    
         xlab(colx) +
         ylab(coly)
     
     print(p)
-    cor(data$col1, data$col2)
+    
 }
-
-#mqic = mqic();
-#mqic = readcsv(mqic, "MQIC.csv", "c:\\MQIC.csv")
-#scatterPlotCorrelate(mqic, "BMI_MEAN", "SBP_MEAN")
-#scatterPlotCorrelate(mqic, "BMI_MEAN", "A1C_MEAN")
-
- 

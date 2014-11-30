@@ -24,7 +24,7 @@ This function returns the number of patients by states.
 \dontrun{
 mqic <- mqic()
 mqic <- readcsv(mqic, "MQIC.csv")
-patientCountByStates(mqic, list("disease"=1, "colNames"=c("State","TotalPatients"), "top"=5))
+patientCountByStates(mqic, list("disease"="diabetes", "colNames"=c("State","TotalPatients"), "top"=5))
 }
 }
 

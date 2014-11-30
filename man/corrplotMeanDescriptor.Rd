@@ -4,12 +4,10 @@
 \alias{corrplotMeanDescriptor}
 \title{corrplotMeanDescriptor: Draws a covariance matrix}
 \usage{
-corrplotMeanDescriptor(clsObject, disease = NULL)
+corrplotMeanDescriptor(clsObject)
 }
 \arguments{
 \item{clsObject}{Instance of mqic class}
-
-\item{disease}{Disease name}
 }
 \description{
 corrplotMeanDescriptor Function
@@ -22,7 +20,7 @@ correlations among the mean descriptors
 \dontrun{
 mqic <- mqic()
 readcsv(mqic, "MQIC.csv")
-corrplotMeanDescriptor(mqic, "diabetes")
+corrplotMeanDescriptor(mqic)
 }
 }
 

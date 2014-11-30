@@ -9,7 +9,7 @@
 #' 
 #' @title frequencyByAge: Number of patients by age
 #' @param clsObject Instance of mqic class
-#' @param list disease, colNames, top 
+#' @param list disease, colNames
 #' @return countByAge Patient count by age 
 #' @examples
 #' library('mqic')
@@ -17,7 +17,7 @@
 #' \dontrun{
 #' mqic <- mqic()
 #' mqic <- readcsv(mqic, "MQIC.csv")
-#' frequencyByAge(mqic, list("disease"=1, "colNames"=c("State","TotalPatients"), "top"=5))
+#' frequencyByAge(mqic, list("disease"="hypertension", "colNames"=c("AgeCategory","TotalPatients")))
 #' }
 #' 
 #' @export
@@ -47,11 +47,19 @@ frequencyByAge.mqic <- function(clsObject, ...)
     
     if (is.list(args[[1]])) args <- args[[1]]
     
-    # Fetch data with the given disease category    
-    if ( ! is.null(args$disease) && args$disease %in% c(1, 2)) {
+    if ( ! is.null(args$disease)) {
+        if ( ! args$disease %in% c("diabetes", "hypertension")) {
+            stop("Valid disease is 'diabetes' or 'hypertension' only.")
+        }
+        if (args$disease == 'diabetes') {
+            args$disease <- 1;
+        } else {
+            args$disease <- 2;
+        }
+      
         data <- subset(
-            data, 
-            data$DISEASE_CATEGORY == args$disease
+          data, 
+          data$DISEASE_CATEGORY == args$disease
         )
     }
   
@@ -78,7 +86,3 @@ frequencyByAge.mqic <- function(clsObject, ...)
   
     return (countByAge)
 }
-
-#mqic = mqic();
-#mqic = readcsv(mqic, "MQIC.csv", "c:\\MQIC.csv")
-#frequencyByAge(mqic, list("disease"=2, "colNames"=c("Age","TotalPatients")))

@@ -4,14 +4,12 @@
 \alias{boxplotMeanDescriptor}
 \title{boxplotMeanDescriptor: Draws box plots for a mean descriptor}
 \usage{
-boxplotMeanDescriptor(clsObject, meanDescriptor, disease = NULL)
+boxplotMeanDescriptor(clsObject, meanDescriptor)
 }
 \arguments{
 \item{clsObject}{nstance of mqic class}
 
 \item{meanDescriptor}{Column name for the mean descriptor}
-
-\item{disease}{Disease name}
 }
 \description{
 boxplotMeanDescriptor Function
@@ -25,7 +23,7 @@ or diabetes.
 \dontrun{
 mqic <- mqic()
 mqic <- readcsv(mqic, "MQIC.csv")
-boxplotMeanDescriptor(mqic, "A1C_MEAN", "diabetes")
+boxplotMeanDescriptor(mqic, "A1C_MEAN")
 }
 }
 

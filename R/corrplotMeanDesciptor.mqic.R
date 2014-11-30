@@ -5,17 +5,16 @@
 #' 
 #' @title corrplotMeanDescriptor: Draws a covariance matrix
 #' @param clsObject Instance of mqic class
-#' @param disease Disease name  
 #' @examples 
 #' \dontrun{
 #' mqic <- mqic()
 #' readcsv(mqic, "MQIC.csv")
-#' corrplotMeanDescriptor(mqic, "diabetes")
+#' corrplotMeanDescriptor(mqic)
 #' }
 #' 
 #' @export
 #' @rdname corrplotMeanDescriptor
-corrplotMeanDescriptor <- function(clsObject, disease = NULL)
+corrplotMeanDescriptor <- function(clsObject)
 {
     UseMethod("corrplotMeanDescriptor")
 }
@@ -23,7 +22,7 @@ corrplotMeanDescriptor <- function(clsObject, disease = NULL)
 #' @return \code{NULL}
 #'
 #' @rdname corrplotMeanDescriptor default
-corrplotMeanDescriptor.default <- function(clsObject, disease = NULL) 
+corrplotMeanDescriptor.default <- function(clsObject) 
 {
     print("corrplotMeanDescriptor doesn't know how to handle this object");
     return(NULL)
@@ -32,18 +31,10 @@ corrplotMeanDescriptor.default <- function(clsObject, disease = NULL)
 #' @return \code{NULL}
 #'
 #' @rdname corrplotMeanDescriptor mqic
-corrplotMeanDescriptor.mqic <- function(clsObject, disease = NULL)
+corrplotMeanDescriptor.mqic <- function(clsObject)
 {
     data <- clsObject$data
-  
-    # Fetch data with the given disease category    
-    if ( ! is.null(disease) && disease %in% c(1, 2)) {
-        data <- subset(
-            data, 
-            data$DISEASE_CATEGORY == disease
-        )
-    }
-  
+       
     # Subset of mean descriptors only
     data <- subset(data, select = c(
         A1C_MEAN,
@@ -61,9 +52,5 @@ corrplotMeanDescriptor.mqic <- function(clsObject, disease = NULL)
     ))
   
     M <- cor(data)
-    corrplot(M, method = "number")  
+    corrplot(M, method = "number")
 }
-
-#mqic <- mqic();
-#mqic <- readcsv(mqic, "MQIC.csv", "c:\\MQIC.csv")
-#corrplotMeanDescriptor(mqic,2)

@@ -28,7 +28,7 @@ meanBMI.default <- function(clsObject)
     return(NULL)
 }
 
-#' @return \code{NULL}
+#' @return \code{output}
 #'
 #' @rdname meanBMI mqic
 meanBMI.mqic <- function(clsObject)
@@ -38,5 +38,5 @@ meanBMI.mqic <- function(clsObject)
   
     output <- rbind(orderByMeanBMI[1,], orderByMeanBMI[nrow(orderByMeanBMI),])
   
-    print (output)
+    return (output)
 }

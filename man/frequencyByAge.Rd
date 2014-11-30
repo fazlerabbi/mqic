@@ -9,7 +9,7 @@ frequencyByAge(clsObject, ...)
 \arguments{
 \item{clsObject}{Instance of mqic class}
 
-\item{list}{disease, colNames, top}
+\item{list}{disease, colNames}
 }
 \value{
 countByAge Patient count by age
@@ -31,7 +31,7 @@ library('mqic')
 \dontrun{
 mqic <- mqic()
 mqic <- readcsv(mqic, "MQIC.csv")
-frequencyByAge(mqic, list("disease"=1, "colNames"=c("State","TotalPatients"), "top"=5))
+frequencyByAge(mqic, list("disease"="hypertension", "colNames"=c("AgeCategory","TotalPatients")))
 }
 }
 

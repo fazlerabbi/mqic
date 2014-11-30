@@ -10,7 +10,7 @@
 #' \dontrun{
 #' mqic <- mqic()
 #' mqic <- readcsv(mqic, "MQIC.csv")
-#' patientCountByStates(mqic, list("disease"=1, "colNames"=c("State","TotalPatients"), "top"=5))
+#' patientCountByStates(mqic, list("disease"="diabetes", "colNames"=c("State","TotalPatients"), "top"=5))
 #' }
 #' 
 #' @export
@@ -40,7 +40,16 @@ patientCountByStates.mqic <- function(clsObject, ...)
     if (is.list(args[[1]])) args <- args[[1]]
     
     # Fetch data with the given disease category    
-    if ( ! is.null(args$disease) && args$disease %in% c(1, 2)) {
+    if ( ! is.null(args$disease)) {
+        if ( ! args$disease %in% c("diabetes", "hypertension")) {
+            stop("Valid disease is 'diabetes' or 'hypertension' only.")
+        }
+        if (args$disease == 'diabetes') {
+            args$disease <- 1;
+        } else {
+            args$disease <- 2;
+        }
+              
         data <- subset(
             data, 
             data$DISEASE_CATEGORY == args$disease

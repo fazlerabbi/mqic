@@ -35,7 +35,7 @@ readcsv.default <- function(clsObject, data.file, filename = NULL)
 readcsv.mqic <- function(clsObject, data.file, filename = NULL)
 {
     if (is.null(filename)) {
-        filename = paste('data/', data.file);
+        filename <- paste(getwd(), "/../data/", data.file, sep = "")
     }
     if (grepl('\\.zip$', filename))
     {
